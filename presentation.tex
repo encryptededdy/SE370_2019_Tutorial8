@@ -85,6 +85,15 @@
     Reader/Writers lock can enhance performance, but is not required.
   \end{block}
 \end{frame}
+\begin{frame}
+  \frametitle{Which of the following best explains what happens when a damaged C program comes to an end but doesn’t call the exit routine?}
+  \begin{itemize}
+    \item The damaged program can corrupt memory used by other processes and cause them to crash or perform illegal instructions.
+    \item<alert@2> The operating system takes control when the program tries to execute an illegal instruction or attempts to access unallocated memory.
+    \item The C standard library takes control when the program fails to return to the code which called the main function.
+    \item The operating system creates a new process and restarts the damaged program in that process so that it gets another chance to complete.
+  \end{itemize}
+\end{frame}
 \begin{frame}[fragile]
   \frametitle{The code below uses a compare and swap function “cas”. What is the code doing?}
   \begin{lstlisting}[style=customc]
@@ -102,5 +111,34 @@
     \item<alert@2> It safely increments balance by increase using a lock-free algorithm.
   \end{itemize}
 \end{frame}
+\begin{frame}
+  \frametitle{Which of the following does NOT happen in a context switch between threads in the same process?}
+  \begin{itemize}
+    \item The processor registers for the currently running thread are saved.
+    \item The processor registers are loaded with the saved values for the new thread.
+    \item<alert@2> The page table is switched from the old thread to the new thread.
+    \item The thread states for the two threads may be changed.
+    \item The stack is changed from the old thread to the new thread.  
+  \end{itemize}
+  \pause
+  \begin{block}{Explanation}
+    Memory is shared between threads, so same page table.
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Which of the following is False?}
+  \begin{itemize}
+    \item FUSE works by redirecting file operations through the FUSE module to a process running in user mode.
+    \item To use a FUSE file system we mount the file system over an existing directory.
+    \item<alert@2> To use FUSE requires root privileges.
+    \item If the FUSE process is killed the files and directories contained within it will not be accessible.
+    \item There has to be a FUSE kernel module in order for FUSE to work on Linux.
+  \end{itemize}
+  \pause
+  \begin{block}{Explanation}
+    You probably used FUSE w/o root in your assignment.
+  \end{block}
+\end{frame}
+
 \section{Selected 2018 Exam Questions}
 \end{document}
