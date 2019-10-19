@@ -1,0 +1,106 @@
+\documentclass{beamer}
+%\documentclass[notes=only]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{ulem}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\lstdefinestyle{customcbig}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+%  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\small\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+%  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\scriptsize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstdefinestyle{customctiny}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+%  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\tiny\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+ 
+\usetheme{Dresden}
+
+\title[SOFTENG 370 Tutorial 9 (2019)] %optional
+{Exam Revision}
+  
+\author{Edward Zhang}
+ 
+% \institute[UoA] % (optional)
+% {
+%   Department of ECSE\\
+%   The University of Auckland
+% }
+ 
+\date[October 2019] % (optional)
+{SOFTENG 370 T8}
+
+\begin{document}
+\frame{\titlepage}
+\begin{frame}
+  \frametitle{Exam Info}
+  Your exam will be short answer, not MCQ. That means the exam from 2012 - 2017 aren't very useful. 2018 had a different lecturer for the first $\frac{1}{4}$ so it's not super helpful either.\\
+\end{frame}
+\section{Adapted MCQs}
+\begin{frame}
+  \frametitle{Which of the following is not a necessary component of a monitor?}
+  \begin{itemize}
+    \item Publicly accessible entry points
+    \item<alert@2> A readers/writers lock
+    \item A scheduler
+    \item A shared resource which is protected by the monitor
+  \end{itemize}
+  \pause
+  \begin{block}{Explanation}
+    Reader/Writers lock can enhance performance, but is not required.
+  \end{block}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{The code below uses a compare and swap function “cas”. What is the code doing?}
+  \begin{lstlisting}[style=customc]
+    add_to_balance(increase):
+      previous_amount = balance
+      while (!cas(&balance,
+        previous_amount,
+        previous_amount + increase)):
+      previous_amount = balance
+  \end{lstlisting}
+  \begin{itemize}
+    \item It repeatedly increments balance by increase until balance overflows.
+    \item It increments balance by increase using a condition variable.
+    \item It safely swaps the values of balance with previous\_amount + balance using a wait-free algorithm.
+    \item<alert@2> It safely increments balance by increase using a lock-free algorithm.
+  \end{itemize}
+\end{frame}
+\section{Selected 2018 Exam Questions}
+\end{document}
