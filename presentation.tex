@@ -139,6 +139,65 @@
     You probably used FUSE w/o root in your assignment.
   \end{block}
 \end{frame}
+\begin{frame}
+  \frametitle{Which of the following disk scheduling algorithms are commonly used for scheduling SSDs?}
+  \begin{itemize}
+    \item Shortest Seek time First
+    \item SCAN
+    \item<alert@2> First come, first served
+    \item Circular SCAN
+    \item None of the above
+  \end{itemize}
+  \pause
+  \begin{block}{Explanation}
+    SSDs have no Seek time, and no head/platter so SCAN is irrelevant. FCFS makes sense since no special handling is required.
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{What causes thrashing?}
+  \begin{itemize}
+    \item When the foreground process has completely used up the number of frames it has been allocated.
+    \item<alert@2> When the sum of the pages of the working-sets exceeds the number of frames.
+    \item When there is not enough contiguous memory to be allocated for all current working sets.
+    \item When all frames are currently being used.
+    \item When all processes have filled up their page tables.
+  \end{itemize}
+  \pause
+  \begin{block}{Explanation}
+    Recall that thrashing is when the virtual memory system is overused, and is thus stuck in a constant state of paging / pagefaults.
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Which of the following statements about user level device drivers is FALSE?}
+  \begin{itemize}
+    \item<alert@2> User level drivers cannot deal with device interrupts.
+    \item User level drivers can communicate with memory mapped devices.
+    \item Most problems with user level drivers do not affect the kernel.
+    \item Because of mode transitions user level drivers are sometimes not used for fast devices.
+    \item User level drivers can communicate with IO ports
+  \end{itemize}
+\end{frame}
 
 \section{Selected 2018 Exam Questions}
+\begin{frame}
+  \frametitle{Question 9b}
+  One protection against the Meltdown exploit that has been implemented in operating systems is kernel page-table isolation (KPTI). Explain what kernel page-table isolation is.
+  \pause
+  \begin{block}{Answer}
+    Separate page tables are kept for a process when it is running in kernel and user mode. The user mode page tables do not have most of the kernel pages mapped into them.
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Question 9c/d}
+  What effect could KPTI have on efficiency, and how does it prevent Meltdown?
+  \pause
+  \begin{block}{Efficiency}
+    Anything that switches to kernel mode, like syscalls, requires a new page table to be loaded. This will also likely flush the TLB.
+  \end{block}
+  \pause
+  \begin{block}{Preventing Meltdown}
+    Meltdown's timing attack relies on attempts to access values in kernel address space (even if these are eventually rejected by a privledge check). However, with KPTI, those addresses are not accessible in the current address space, so the attempt cannot be made.
+  \end{block}
+\end{frame}
+
 \end{document}
