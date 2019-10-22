@@ -177,6 +177,28 @@
     \item User level drivers can communicate with IO ports
   \end{itemize}
 \end{frame}
+\begin{frame}
+  \frametitle{Which of the following conditions have a direct influence on the effective access time of memory?}
+  \begin{itemize}
+    \item The time to retrieve page table information for the page.
+    \item The page fault rate.
+    \item The time taken to provide a free frame for the page if required.
+    \item<alert@2> All of the above.
+  \end{itemize}
+  \pause
+  \begin{block}{Explanation}
+    Recall that effective means we take into account the average time.
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Which of the following best explains what happens concerning the current instruction when a page fault occurs?}
+  \begin{itemize}
+    \item The instruction is completed and then the required page is brought into a frame so that the program can continue correctly.
+    \item The current thread changes to another thread and the offending instruction and its thread are removed from the system.
+    \item<alert@2> After the required page has been brought into a frame the instruction must usually be restarted from its initial state before the page fault occurred.
+    \item The current instruction is only restarted if it caused the page fault. If it didn’t cause the page fault it continues normally.
+  \end{itemize}
+\end{frame}
 
 \section{Selected 2018 Exam Questions}
 \begin{frame}
@@ -199,5 +221,55 @@
     Meltdown's timing attack relies on attempts to access values in kernel address space (even if these are eventually rejected by a privledge check). However, with KPTI, those addresses are not accessible in the current address space, so the attempt cannot be made.
   \end{block}
 \end{frame}
-
+\begin{frame}
+  \frametitle{Question 10}
+  What is a user-level device driver?
+  \pause
+  \begin{block}{Answer}
+    A device driver implemented in code to be run in user mode rather than kernel mode.
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Question 4c}
+  Explain what a Least Slack Time schedule is and why it is a suitable choice for real-time scheduling.
+  \pause
+  \begin{block}{Answer}
+    The slack time is the amount of time from the current time to the end of the deadline for a process minus the amount of compute time remaining for that process. A Least Slack Time schedule chooses the process with the smallest slack time at any point to be the scheduled process. This is appropriate for a real-time system because processes have to complete before their deadlines or the real-time requirement has not been met. When the slack time of a process gets to zero it has to run or it will pass its deadline.
+  \end{block}
+\end{frame}
+\section{Selected 2011 Exam Questions}
+\begin{frame}
+  \frametitle{Question 9b}
+  One protection against the Meltdown exploit that has been implemented in operating systems is kernel page-table isolation (KPTI). Explain what kernel page-table isolation is.
+  \pause
+  \begin{block}{Answer}
+    Separate page tables are kept for a process when it is running in kernel and user mode. The user mode page tables do not have most of the kernel pages mapped into them.
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Question 2b/c}
+  Give an example of when a hard link is preferable to a soft link
+  \pause
+  \begin{block}{Answer}
+    When we want to avoid the problem of a broken link when the original file gets moved.
+  \end{block}
+  \pause
+  Give an example of when a soft link is preferable to a hard link
+  \pause
+  \begin{block}{Answer}
+    When the link is to a file on a different device or volume, or to a directory.
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Question 4a}
+  Using virtual memory slows down the effective access time, EAT, of memory for our processes. In lectures we saw two different ways in which access to a particular address in  memory can be slowed down compared to a non-virtual memory system. Describe the two different ways and relate both of them to the page table information.
+  \begin{block}{Hint}
+    Consider what extra steps are added when using virtual memory.
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Question 4a Answer}
+  1. The page table information needs to be accessed forevery memory access. This either leads to two (or more)memory reads for every memory access or else requires acache (the TLB) to hold the page table information forrecently accessed pages. \\
+  2. The page may not be resident in RAM but on disk. Inorder to access data on the page it has to be brought intoa frame of real memory. The information about whether thepage is in RAM or on disk is stored in the page tableentry.
+\end{frame}
 \end{document}
